@@ -1,17 +1,15 @@
 import { connection } from "../db.js";
 
-export async function getAllCategories(req, res) {
+export async function getAllContainers(req, res) {
     try {
         const sql = `
-            SELECT *,
-                ( 
-                    SELECT COUNT(*)
-                    FROM movies
-                    WHERE movies.category_id = categories.id AND movies.is_published = 1
-                ) AS count
-            FROM categories
-            WHERE is_published = 1
-            ORDER BY name;`;
+            SELECT *, containers.id AS contID, 
+            (SELECT COUNT(id) 
+            FROM boxes 
+            WHERE boxes.container_id=containers.id) AS boxes_in_container 
+            FROM containers 
+            LEFT JOIN boxes ON boxes.container_id=containers.id 
+            GROUP by containers.id`;
         const [result] = await connection.execute(sql);
         return res.json({
             status: 'success',

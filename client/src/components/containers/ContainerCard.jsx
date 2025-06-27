@@ -1,7 +1,7 @@
 import { Link } from "react-router";
-import './Categories.css';
+import './Containers.css';
 
-export function CategoryCard({ data }) {
+export function ContainerCard({ data }) {
     return (
         <div className="feature col">
             <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">

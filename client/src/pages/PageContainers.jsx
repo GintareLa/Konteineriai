@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { CategoriesList } from "../components/categories/CategoriesList";
+import { ContainersList } from "../components/containers/ContainersList";
 import { PageTitle } from "../components/page-title/PageTitle";
 
-export function PageCategories() {
+export function PageContainers() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5417/api/categories', {
+        fetch('http://localhost:5417/api/containers', {
             method: 'GET',
         })
             .then(res => res.json())
@@ -20,8 +20,8 @@ export function PageCategories() {
 
     return (
         <div className="container">
-            <PageTitle title="All categories" />
-            <CategoriesList data={data} />
+            <PageTitle title="All containers" />
+            <ContainersList data={data} />
         </div>
     )
 }
